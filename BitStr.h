@@ -8,6 +8,8 @@ class BitStr
 private:
 	char *bits;
 	uint size;
+	uint max(uint a, uint b) { return (a > b) ? a : b; }
+	uint min(uint a, uint b) { return (a < b) ? a : b; }
 
 public:
 	BitStr()
@@ -18,10 +20,17 @@ public:
 
 	BitStr(const char* s) {
 		size = (uint)strlen(s);
-		bits = new char[size+1];
-		for (uint i = 0; i < size;i++) 
+
+		uint offset = 0;
+		while ((s[offset] != '1')&&(size>1)) //errase first zero series in number (0011 = 11 )
 		{
-			bits[i] = s[i];		
+			size--;
+			offset++;
+		}
+		bits = new char[size+1];
+		for (uint i=0; i < size;i++)
+		{
+			bits[i] = s[i + offset];
 		}
 		bits[size] = 0;	
 	}
@@ -34,19 +43,37 @@ public:
 		return 0;
 	}
 
-	BitStr operator+(BitStr&b)
-	{ 
-		uint sizet = (uint)(size < b.GetSize() ? size : b.GetSize());
-		char* tmp = new char[sizet+1];
-		
-		for (uint i = 0; i < sizet; i++)
-		{
-			tmp[i] = (bits[i] == b[i]) ? '0' : '1';
-		}
-		tmp[sizet] = 0;
+	BitStr& operator+(BitStr&b)
+	{
+		uint Min, Max;		
 
-		return BitStr(tmp);
+		Max = max(size, b.GetSize());
+		Min = min(size, b.GetSize());
+		char* tmp = new char[Max+1];
+		
+		for (uint i = 0; i <Min; i++)
+		{			
+			tmp[Max - i - 1] = (bits[size - i - 1] == b[b.GetSize() - i - 1]) ? '0' : '1';
+		}
+		tmp[Max] = 0;
+		if (size > b.GetSize())
+		{
+			for (int i = 0; i < Max - Min; i++)
+			{
+				tmp[i] = bits[i];
+			}
+		}
+		else 
+		{
+			for (int i = 0; i < Max - Min; i++)
+			{
+				tmp[i] = b[i];
+			}		
+		}
+		BitStr* t = new BitStr(tmp);
+		return *t;
 	}
+
 	BitStr operator=(BitStr &b)
 	{
 		if (this == &b) return *this;
@@ -77,6 +104,19 @@ public:
 		return !((*this)==b);
 	}
 
+	BitStr& operator%(BitStr& b)
+	{
+		uint sizet = (uint)(size < b.GetSize() ? size : b.GetSize());
+		char* tmp = new char[sizet + 1];
+
+		for (uint i = 0; i < sizet; i++)
+		{
+			tmp[i] = (bits[i] == b[i]) ? '0' : '1';
+		}
+		tmp[sizet] = 0;
+		BitStr* t = new BitStr(tmp);
+		return *t;
+	}
 
 	uint GetSize() 
 	{
