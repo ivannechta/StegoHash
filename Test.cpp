@@ -159,4 +159,10 @@ TEST(Operator, Mod_GF_6)
 	BitStr R("101");
 
 	C = (A % B);
-	EXPECT_EQ(C == R, true);}
+	EXPECT_EQ(C == R, true);
+}
+TEST(Operator, ConvertChar)
+{
+	BitStr A("1000000");
+	EXPECT_EQ(strcmp((char*)A,"1000000"), 0);
+}

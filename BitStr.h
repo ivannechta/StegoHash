@@ -125,6 +125,10 @@ public:
 	{		
 		return !((*this)==b);
 	}
+	operator char* ()
+	{
+		return bits;	
+	}
 
 	BitStr& operator%(BitStr& b)
 	{
