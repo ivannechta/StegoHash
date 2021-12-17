@@ -16,8 +16,8 @@ private:
 public:
 	char* Dec2Bin(uint x)
 	{
-		uint n=(x>0)?floor(log(x)/log(2)):0;
-		char* a, * b;
+		uint n=(x>0)?(uint)floor(log(x)/log(2)):0;
+		char* a;
 		a = new char[n + 2];		
 		uint i = 0; a[n + 1] = 0;
 		do 
@@ -35,7 +35,7 @@ public:
 		BitStr *t; uint j;
 		code[0]= new BitStr("0");
 		tmp[0] = '1';
-		for (int i = 1; i < N; i++)
+		for (uint i = 1; i < N; i++)
 		{			
 			for (j = 1; j < i; j++)
 			{
@@ -53,12 +53,12 @@ public:
 	Lambda(uint m, uint prime)
 	{
 		if (m > 10) throw 1; //Very big Lambda-table
-		if ((prime >> m + 1) > 0)throw 2; //very big prime
+		if ((prime >> (m + 1)) > 0)throw 2; //very big prime
 		M = m;		
 		N = (1 << M);
 		L = new uint[N];	
 		code = new BitStr*[N];
-		for (int i = 0; i < N; i++)
+		for (uint i = 0; i < N; i++)
 		{
 			L[i] = i;
 		}
@@ -68,10 +68,25 @@ public:
 
 	void Show()
 	{		
-		for (int i = 0; i < N; i++)
+		for (uint i = 0; i < N; i++)
 		{		
 			printf("%d -> %s\n",L[i],code[i]->GetFormatedString(M));			
 		}	
 	}
 
+	uint GetDByCode(BitStr *a)
+	{
+		for (uint i = 0; i < N; i++)
+		{
+			if (*code[i] == *a) return i;
+		}
+		return N + 1;
+	}
+	
+	BitStr* GetCodeByD(uint a)
+	{
+		BitStr* b = new BitStr;
+		*b = *(code[a]);
+		return b;
+	}
 };

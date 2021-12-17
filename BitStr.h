@@ -158,11 +158,11 @@ public:
 	{
 		char* res = new char[m + 1];
 		res[m] = 0;
-		for (int i = 0; i < m-size; i++)
+		for (uint i = 0; i < m-size; i++)
 		{
 			res[i] = '0';
 		}
-		for (int i = 0; i < size; i++)
+		for (uint i = 0; i < size; i++)
 		{
 			res[m - size + i] = bits[i];
 		}
