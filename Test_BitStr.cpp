@@ -100,9 +100,19 @@
 		C = (A + B);
 		EXPECT_EQ(C == R, true);
 	}
-	TEST(Operator, Mod_GF0)
+	TEST(Operator, Mod_GF0_1)
 	{
 		BitStr A("1011010");
+		BitStr B("101");
+		BitStr C;
+		BitStr R("0");
+
+		C = (A % B);
+		EXPECT_EQ(C == R, true);
+	}
+	TEST(Operator, Mod_GF0_2)
+	{
+		BitStr A("0");
 		BitStr B("101");
 		BitStr C;
 		BitStr R("0");
