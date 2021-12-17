@@ -52,7 +52,8 @@ public:
 public:
 	Lambda(uint m, uint prime)
 	{
-		if (m > 4) throw 1; //Very big Lambda-table
+		if (m > 10) throw 1; //Very big Lambda-table
+		if ((prime >> m + 1) > 0)throw 2; //very big prime
 		M = m;		
 		N = (1 << M);
 		L = new uint[N];	
@@ -69,7 +70,7 @@ public:
 	{		
 		for (int i = 0; i < N; i++)
 		{		
-			printf("%d -> %s\n",L[i],code[i]->GetFormatedString(M));
+			printf("%d -> %s\n",L[i],code[i]->GetFormatedString(M));			
 		}	
 	}
 

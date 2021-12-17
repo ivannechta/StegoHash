@@ -7,9 +7,17 @@
 
 
 int main(int argc,char *argv[])
-{	
-	Lambda* L = new Lambda(2, 7);
-	L->Show();
+{		
+	try {
+		Lambda* L = new Lambda(5, 61);
+		L->Show();
+	}
+	catch (int i) 
+	{
+		printf("Error Code=%d\n",i);
+	
+	}
+	
 	/*testing::InitGoogleTest(&argc,argv);
 	return RUN_ALL_TESTS();	
 	*/
