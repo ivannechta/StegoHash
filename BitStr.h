@@ -154,6 +154,20 @@ public:
 	{
 		return size;
 	}
+	char* GetFormatedString(uint m)
+	{
+		char* res = new char[m + 1];
+		res[m] = 0;
+		for (int i = 0; i < m-size; i++)
+		{
+			res[i] = '0';
+		}
+		for (int i = 0; i < size; i++)
+		{
+			res[m - size + i] = bits[i];
+		}
+		return res;
+	}
 
 	void Show()
 	{

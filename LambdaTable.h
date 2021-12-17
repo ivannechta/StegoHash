@@ -68,12 +68,8 @@ public:
 	void Show()
 	{		
 		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < M - code[i]->GetSize(); j++)
-			{
-				printf("0");
-			}
-			printf("%s\n",(char*)*code[i]);
+		{		
+			printf("%d -> %s\n",L[i],code[i]->GetFormatedString(M));
 		}	
 	}
 
