@@ -14,12 +14,12 @@ TEST(Convert, Dec2Bin_13) {
 }
 TEST(Search, Code_25) {
 	Lambda L(5, 61);	
-	EXPECT_EQ(L.GetDByCode(new BitStr("1101")), 25);
+	EXPECT_EQ(L.GetDByCode_uint(new BitStr("1101")), 25);
 	EXPECT_TRUE(true);
 }
 TEST(Search, Code_29) {
 	Lambda L(5, 61);
-	EXPECT_EQ(L.GetDByCode(new BitStr("11001")), 29);
+	EXPECT_EQ(L.GetDByCode_uint(new BitStr("11001")), 29);
 	EXPECT_TRUE(true);
 }
 TEST(Search, D_0) {

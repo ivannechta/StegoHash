@@ -16,7 +16,7 @@ private:
 public:
 	char* Dec2Bin(uint x)
 	{
-		uint n=(x>0)?(uint)floor(log(x)/log(2)):0;
+		uint n=(x>0)?(uint)floor(log(x)/log(2)):0;		
 		char* a;
 		a = new char[n + 2];		
 		uint i = 0; a[n + 1] = 0;
@@ -74,7 +74,7 @@ public:
 		}	
 	}
 
-	uint GetDByCode(BitStr *a)
+	uint GetDByCode_uint(BitStr *a)
 	{
 		for (uint i = 0; i < N; i++)
 		{
@@ -82,6 +82,23 @@ public:
 		}
 		return N + 1;
 	}
+
+	BitStr GetDByCode(BitStr* a)
+	{
+		uint i;
+		for (i = 0; i < N; i++)
+		{
+			if (*code[i] == *a) break;
+		}
+		char* tmp = new char[i + 1];
+		tmp[0] = '1'; tmp[i] = 0;
+		for (uint t = 1; t < i; t++)
+		{
+			tmp[t] = '0';
+		}
+		return BitStr(tmp);
+	}
+
 	
 	BitStr* GetCodeByD(uint a)
 	{
