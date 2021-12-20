@@ -14,96 +14,13 @@ private:
 	BitStr** code;
 	BitStr* PrimePolynom;
 public:
-	char* Dec2Bin(uint x)
-	{
-		uint n=(x>0)?(uint)floor(log(x)/log(2)):0;		
-		char* a;
-		a = new char[n + 2];		
-		uint i = 0; a[n + 1] = 0;
-		do 
-		{
-			a[n - i] = (x % 2) ? '1' : '0';
-			x = x / 2;
-			i++;
-		}while (x > 0);
-		return a;
-	}
-
-	void InitCode()
-	{
-		char* tmp=new char[N+1];
-		BitStr *t; uint j;
-		code[0]= new BitStr("0");
-		tmp[0] = '1';
-		for (uint i = 1; i < N; i++)
-		{			
-			for (j = 1; j < i; j++)
-			{
-				tmp[j] = '0';
-			}
-			tmp[j] = 0;		
-
-			t = new BitStr;
-			*t = (*new BitStr(tmp)) % *PrimePolynom;
-			code[i] = t;
-		}		
-	}
+	char*	Dec2Bin			(uint x);
+	void	InitCode();
 
 public:
-	Lambda(uint m, uint prime)
-	{
-		if (m > 10) throw 1; //Very big Lambda-table
-		if ((prime >> (m + 1)) > 0)throw 2; //very big prime
-		M = m;		
-		N = (1 << M);
-		L = new uint[N];	
-		code = new BitStr*[N];
-		for (uint i = 0; i < N; i++)
-		{
-			L[i] = i;
-		}
-		PrimePolynom = new BitStr(Dec2Bin(prime));
-		InitCode();
-	}
-
-	void Show()
-	{		
-		for (uint i = 0; i < N; i++)
-		{		
-			printf("%d -> %s\n",L[i],code[i]->GetFormatedString(M));			
-		}	
-	}
-
-	uint GetDByCode_uint(BitStr *a)
-	{
-		for (uint i = 0; i < N; i++)
-		{
-			if (*(code[i]) == *a) return i;
-		}
-		return N + 1;
-	}
-
-	BitStr GetDByCode(BitStr* a)
-	{
-		uint i;
-		for (i = 0; i < N; i++)
-		{
-			if (*code[i] == *a) break;
-		}
-		char* tmp = new char[i + 1];
-		tmp[0] = '1'; tmp[i] = 0;
-		for (uint t = 1; t < i; t++)
-		{
-			tmp[t] = '0';
-		}
-		return BitStr(tmp);
-	}
-
-	
-	BitStr* GetCodeByD(uint a)
-	{
-		BitStr* b = new BitStr;
-		*b = *(code[a]);
-		return b;
-	}
+	Lambda(uint m, uint prime);
+	void	Show();
+	uint	GetDByCode_uint	(BitStr* a);
+	BitStr	GetDByCode		(BitStr* a);	
+	BitStr* GetCodeByD		(uint a);
 };

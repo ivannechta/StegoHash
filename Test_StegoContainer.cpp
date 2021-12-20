@@ -18,8 +18,19 @@ TEST(Read, e100m11) {
 	EXPECT_EQ(strcmp(s.ReadFromContainer("100"), "11"), 0);
 }
 
+TEST(Write, s111m00) {
+	StegoContainer s("101");
+	EXPECT_EQ(strcmp(s.WriteToContainer("00"), "111"), 0);	
+}
+TEST(Write, s001m01) {
+	StegoContainer s("101");
+	EXPECT_EQ(strcmp(s.WriteToContainer("01"), "001"), 0);
+}
+TEST(Write, s101m10) {
+	StegoContainer s("101");
+	EXPECT_EQ(strcmp(s.WriteToContainer("10"), "101"), 0);
+}
 TEST(Write, s100m11) {
 	StegoContainer s("101");
 	EXPECT_EQ(strcmp(s.WriteToContainer("11"), "100"), 0);
-	
 }
