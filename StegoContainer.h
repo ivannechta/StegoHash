@@ -23,6 +23,7 @@ private:
 		uint tmp[] = { 1,3,7,13,17,37,67,131,257,521,1031,2053};
 		return tmp[i];
 	}
+
 public:
 
 	StegoContainer(const char * em)
@@ -41,18 +42,19 @@ public:
 	}
 
 	char* ReadFromContainer(const char* st_cont)
-	{
-		uint d;
-		uint len = strlen(st_cont);
-		if (len == 1) {
-			d = (st_cont[0] == '0') ? 0 : 1;
-		}
-		else 
+	{		
+		BitStr s("0");
+
+		for (int i = Len - 1; i >= 0; i--)
 		{
-			d = (1 << (len-1))-1;
+			if (st_cont[Len - i - 1] == '1')
+			{				
+				//int tmp = (1 << i) - 1;
+				BitStr *d = L->GetCodeByD(i + 1);				
+				s = s + *d;
+			}			
 		}		
-		
-		return L->GetCodeByD(d)->GetFormatedString(Capacity);
+		return s.GetFormatedString(Capacity);
 	}
 
 	char *WriteToContainer(const char* sm) 
@@ -68,7 +70,7 @@ public:
 		//printf("d=%s\n", (char*)d);
 		BitStr w = em + d;
 		//printf("w=%s\n", (char*)w);
-		return (char*)w;
+		return w.GetFormatedString(Len);
 	}
 
 	void Info()

@@ -78,7 +78,7 @@ public:
 	{
 		for (uint i = 0; i < N; i++)
 		{
-			if (*code[i] == *a) return i;
+			if (*(code[i]) == *a) return i;
 		}
 		return N + 1;
 	}
