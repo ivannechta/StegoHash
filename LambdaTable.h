@@ -21,8 +21,6 @@ public:
 	Lambda(uint m, uint prime);
 	void	Show();
 	uint	GetDByCode_uint	(BitStr* a);
-	BitStr	GetDByCode		(BitStr* a);
-	[[deprecated("Use FLambda() instead.")]]
-	BitStr* GetCodeByD		(uint a);
-	BitStr* FLambda		(BitStr *b);
+	BitStr	GetDByCode		(BitStr* a);	
+	BitStr* FLambda(BitStr *b);
 };

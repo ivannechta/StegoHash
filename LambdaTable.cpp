@@ -38,7 +38,7 @@ void Lambda::InitCode()
 Lambda::Lambda(uint m, uint prime)
 {
 	if (m > 10) throw 1; //Very big Lambda-table
-	if ((prime >> (m + 1)) > 0)throw 2; //very big prime
+	if ((prime >> (m + 1)) > 0)throw 2; //very big prime ?????????
 	M = m;
 	N = (1 << M);
 	L = new uint[N];
@@ -92,8 +92,9 @@ BitStr* Lambda::GetCodeByD(uint a)
 	*b = *(code[a]);
 	return b;
 }
+
 BitStr* Lambda::FLambda(BitStr *b)
-{	
+{
 	BitStr* tmp = new BitStr();
 	*tmp = (*b) % (*PrimePolynom);
 	return tmp;
