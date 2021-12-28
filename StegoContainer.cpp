@@ -24,7 +24,7 @@ char* StegoContainer::ReadFromContainer(const char* st_cont)
 	for (int i = Len - 1; i >= 0; i--)
 	{
 		if (st_cont[Len - i - 1] == '1')
-		{
+		{			
 			BitStr* d = L->GetCodeByD(i + 1);
 			s = s + *d;
 		}
@@ -34,6 +34,7 @@ char* StegoContainer::ReadFromContainer(const char* st_cont)
 
 char* StegoContainer::WriteToContainer(const char* sm)
 {
+	if (strlen(sm) != Capacity)throw 3;
 	BitStr s = BitStr(sm);
 	BitStr em = BitStr(EmptyMessage);
 	BitStr prime = BitStr(L->Dec2Bin(Primes[Capacity]));

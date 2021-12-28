@@ -11,23 +11,29 @@
 
 int main(int argc,char *argv[])
 {		
-
 #ifdef UnitTEST
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 
 #else // UnitTEST
 	try {		
-		StegoContainer* s = new StegoContainer("101");
-		printf("Write(00) ->%s\n", s->WriteToContainer("00"));
-		printf("Write(01) ->%s\n", s->WriteToContainer("01"));
-		printf("Write(10) ->%s\n", s->WriteToContainer("10"));
-		printf("Write(11) ->%s\n", s->WriteToContainer("11"));
-
-		printf("Read(111) ->%s\n", s->ReadFromContainer("111"));
-		printf("Read(001) ->%s\n", s->ReadFromContainer("001"));
-		printf("Read(101) ->%s\n", s->ReadFromContainer("101"));
-		printf("Read(100) ->%s\n", s->ReadFromContainer("100"));
+		StegoContainer* s = new StegoContainer("111111111111111");
+		printf("Write(000) ->%s\n", s->WriteToContainer("0000"));
+		printf("Write(001) ->%s\n", s->WriteToContainer("0001"));
+		printf("Write(010) ->%s\n", s->WriteToContainer("0010"));
+		printf("Write(011) ->%s\n", s->WriteToContainer("0011"));
+		printf("Write(100) ->%s\n", s->WriteToContainer("0100"));
+		printf("Write(101) ->%s\n", s->WriteToContainer("0101"));
+		printf("Write(110) ->%s\n", s->WriteToContainer("0110"));
+		printf("Write(111) ->%s\n", s->WriteToContainer("0111"));
+		printf("Write(000) ->%s\n", s->WriteToContainer("1000"));
+		printf("Write(001) ->%s\n", s->WriteToContainer("1001"));
+		printf("Write(010) ->%s\n", s->WriteToContainer("1010"));
+		printf("Write(011) ->%s\n", s->WriteToContainer("1011"));
+		printf("Write(100) ->%s\n", s->WriteToContainer("1100"));
+		printf("Write(101) ->%s\n", s->WriteToContainer("1101"));
+		printf("Write(110) ->%s\n", s->WriteToContainer("1110"));
+		printf("Write(111) ->%s\n", s->WriteToContainer("1111"));
 	}
 	catch (int i)
 	{
