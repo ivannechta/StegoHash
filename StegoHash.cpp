@@ -3,7 +3,7 @@
 #include <string.h>
 #include "LambdaTable.h"
 #include "StegoContainer.h"
-#define UnitTEST
+//#define UnitTEST
 
 #ifdef UnitTEST
 #include "gtest/gtest.h"
@@ -16,9 +16,10 @@ int main(int argc,char *argv[])
 	return RUN_ALL_TESTS();
 
 #else // UnitTEST
-	try {		
-		
+	try {				
 		StegoContainer* s = new StegoContainer("111111111111111");
+		printf("Capacity=%d \n",s->GetContainerCapacity());
+		
 		printf("Write(1000) ->%s\n", s->WriteToContainer("1000"));	
 	}
 	catch (int i)

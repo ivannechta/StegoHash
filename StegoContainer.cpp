@@ -5,17 +5,17 @@ uint Primes[] = { 1,3,7,13,19,37,67,131,283 };
 StegoContainer::StegoContainer(const char* em)
 {
 	Len = strlen(em);
-	Capacity = GetContainerCapacity(Len);
-	if (Capacity >= 9)throw 2; //Very big prime
+	Capacity = (uint)trunc(log(Len + 1) / log(2)); 
+	if (Capacity >= 9)throw 2; //Very big prime	
 	L = new Lambda(Capacity, Primes[Capacity]);
 	EmptyMessage = new char[Len + 1];
 	strcpy_s(EmptyMessage, Len + 1, em);
 	Info();
 }
 
-uint StegoContainer::GetContainerCapacity(uint N)
+uint StegoContainer::GetContainerCapacity()
 {
-	return (uint)trunc(log(N + 1) / log(2));
+	return Capacity;
 }
 
 char* StegoContainer::ReadFromContainer(const char* st_cont)
