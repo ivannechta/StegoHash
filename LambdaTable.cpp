@@ -83,15 +83,6 @@ BitStr Lambda::GetDByCode(BitStr* a)
 	}
 	return BitStr(tmp);
 }
-//#pragma deprecated(Lambda::GetCodeByD)
-
-BitStr* Lambda::GetCodeByD(uint a)
-{
-	
-	BitStr* b = new BitStr;
-	*b = *(code[a]);
-	return b;
-}
 
 BitStr* Lambda::FLambda(BitStr *b)
 {

@@ -18,7 +18,7 @@ private:
 public:
 
 			StegoContainer		(const char* em);
-	uint	GetContainerCapacity(uint N);
+	uint	GetContainerCapacity();
 	char*	ReadFromContainer	(const char* st_cont);
 	char*	WriteToContainer	(const char* sm);
 	void Info();
