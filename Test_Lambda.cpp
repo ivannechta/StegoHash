@@ -22,6 +22,7 @@ TEST(Search, Code_29) {
 	EXPECT_EQ(L.GetDByCode_uint(new BitStr("11001")), 29);
 	EXPECT_TRUE(true);
 }
+/*
 TEST(Search, D_0) {
 	Lambda L(5, 61);
 	BitStr* a = new BitStr("0");
@@ -41,5 +42,30 @@ TEST(Search, D_29) {
 	BitStr* a = new BitStr("11001");
 	BitStr* b = L.GetCodeByD(29);	
 	EXPECT_EQ(*b==*a, true);
+	EXPECT_TRUE(true);
+}
+*/
+TEST(SearchFL, D_0) {
+	Lambda L(5, 61);
+	BitStr* a = new BitStr("0");
+	BitStr* tmp = new BitStr("0");
+	BitStr* b = L.FLambda(tmp);
+	EXPECT_EQ(*b == *a, true);
+	EXPECT_TRUE(true);
+}
+TEST(SearchFL, D_8) {
+	Lambda L(5, 61);
+	BitStr* a = new BitStr("1110");
+	BitStr* tmp = new BitStr("10000000");
+	BitStr* b = L.FLambda(tmp);
+	EXPECT_EQ(*b == *a, true);
+	EXPECT_TRUE(true);
+}
+TEST(SearchFL, D_29) {
+	Lambda L(5, 61);
+	BitStr* a = new BitStr("11001");
+	BitStr* tmp = new BitStr("10000000000000000000000000000");
+	BitStr* b = L.FLambda(tmp);
+	EXPECT_EQ(*b == *a, true);
 	EXPECT_TRUE(true);
 }

@@ -150,7 +150,7 @@ char* BitStr::GetFormatedString(uint m)
 	{
 		res[i] = '0';
 	}
-	for (uint i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		res[m - size + i] = bits[i];
 	}

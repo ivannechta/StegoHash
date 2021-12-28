@@ -1,11 +1,12 @@
 #include "StegoContainer.h"
 
-uint Primes[] = { 1,3,7,13,17,37,67,131,257,521,1031,2053 };
+uint Primes[] = { 1,3,7,13,19,37,67,131,283 };
 
 StegoContainer::StegoContainer(const char* em)
 {
 	Len = strlen(em);
 	Capacity = GetContainerCapacity(Len);
+	if (Capacity >= 9)throw 2; //Very big prime
 	L = new Lambda(Capacity, Primes[Capacity]);
 	EmptyMessage = new char[Len + 1];
 	strcpy_s(EmptyMessage, Len + 1, em);
@@ -18,22 +19,15 @@ uint StegoContainer::GetContainerCapacity(uint N)
 }
 
 char* StegoContainer::ReadFromContainer(const char* st_cont)
-{
-	BitStr s("0");
-
-	for (int i = Len - 1; i >= 0; i--)
-	{
-		if (st_cont[Len - i - 1] == '1')
-		{
-			BitStr* d = L->GetCodeByD(i + 1);
-			s = s + *d;
-		}
-	}
-	return s.GetFormatedString(Capacity);
+{	
+	BitStr* d = new BitStr(st_cont);
+	BitStr *s=L->FLambda(d);
+	return s->GetFormatedString(Capacity);
 }
 
 char* StegoContainer::WriteToContainer(const char* sm)
 {
+	if (strlen(sm) != Capacity) throw 3;
 	BitStr s = BitStr(sm);
 	BitStr em = BitStr(EmptyMessage);
 	BitStr prime = BitStr(L->Dec2Bin(Primes[Capacity]));

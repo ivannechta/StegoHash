@@ -22,5 +22,5 @@ public:
 	void	Show();
 	uint	GetDByCode_uint	(BitStr* a);
 	BitStr	GetDByCode		(BitStr* a);	
-	BitStr* GetCodeByD		(uint a);
+	BitStr* FLambda(BitStr *b);
 };

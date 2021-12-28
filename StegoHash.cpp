@@ -18,16 +18,9 @@ int main(int argc,char *argv[])
 
 #else // UnitTEST
 	try {		
-		StegoContainer* s = new StegoContainer("101");
-		printf("Write(00) ->%s\n", s->WriteToContainer("00"));
-		printf("Write(01) ->%s\n", s->WriteToContainer("01"));
-		printf("Write(10) ->%s\n", s->WriteToContainer("10"));
-		printf("Write(11) ->%s\n", s->WriteToContainer("11"));
-
-		printf("Read(111) ->%s\n", s->ReadFromContainer("111"));
-		printf("Read(001) ->%s\n", s->ReadFromContainer("001"));
-		printf("Read(101) ->%s\n", s->ReadFromContainer("101"));
-		printf("Read(100) ->%s\n", s->ReadFromContainer("100"));
+		
+		StegoContainer* s = new StegoContainer("111111111111111");
+		printf("Write(1000) ->%s\n", s->WriteToContainer("1000"));	
 	}
 	catch (int i)
 	{
