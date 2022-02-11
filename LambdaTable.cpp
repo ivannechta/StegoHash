@@ -16,7 +16,7 @@ char* Lambda::Dec2Bin(uint x)
 }
 
 void Lambda::InitCode()
-{
+{	
 	char* tmp = new char[N + 1];
 	BitStr* t; uint j;
 	code[0] = new BitStr("0");
@@ -59,22 +59,16 @@ void Lambda::Show()
 	}
 }
 
-uint Lambda::GetDByCode_uint(BitStr* a)
-{
-	for (uint i = 0; i < N; i++)
-	{
-		if (*(code[i]) == *a) return i;
-	}
-	return N + 1;
-}
-
 BitStr Lambda::GetDByCode(BitStr* a)
 {
-	uint i;
-	for (i = 0; i < N; i++)
-	{
-		if (*code[i] == *a) break;
-	}
+	uint i;	
+
+	D = new DiscrLog(PrimePolynom->AsNumber(), a->AsNumber());
+	D->Divide();
+	i = D->GetPower()+1;
+
+
+
 	char* tmp = new char[i + 1];
 	tmp[0] = '1'; tmp[i] = 0;
 	for (uint t = 1; t < i; t++)

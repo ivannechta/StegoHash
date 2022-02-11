@@ -3,7 +3,7 @@
 #include <string.h>
 #include "LambdaTable.h"
 #include "StegoContainer.h"
-//#define UnitTEST
+#define UnitTEST
 
 #ifdef UnitTEST
 #include "gtest/gtest.h"

@@ -1,6 +1,7 @@
-#define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING  1
+//#define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING  1
 #include "gtest/gtest.h"
 #include "BitStr.h"
+#include "Number.h"
 
 	TEST(Constructor, FirstZero4)
 	{
@@ -170,8 +171,9 @@
 		C = (A % B);
 		EXPECT_EQ(C == R, true);
 	}
-	TEST(Operator, ConvertChar)
+	TEST(BitStr, AsNumber)
 	{
 		BitStr A("1000000");
-		EXPECT_EQ(strcmp((char*)A, "1000000"), 0);
+		Number a((char*)"1000000");
+		EXPECT_EQ(A.AsNumber()==a, true);
 	}

@@ -12,16 +12,6 @@ TEST(Convert, Dec2Bin_13) {
 	EXPECT_EQ(strcmp(L.Dec2Bin(13), "1101"), 0);
 	EXPECT_TRUE(true);
 }
-TEST(Search, Code_25) {
-	Lambda L(5, 61);	
-	EXPECT_EQ(L.GetDByCode_uint(new BitStr("1101")), 25);
-	EXPECT_TRUE(true);
-}
-TEST(Search, Code_29) {
-	Lambda L(5, 61);
-	EXPECT_EQ(L.GetDByCode_uint(new BitStr("11001")), 29);
-	EXPECT_TRUE(true);
-}
 /*
 TEST(Search, D_0) {
 	Lambda L(5, 61);
@@ -30,12 +20,13 @@ TEST(Search, D_0) {
 	EXPECT_EQ(*b == *a, true);
 	EXPECT_TRUE(true);
 }
+/*
 TEST(Search, D_8) {
 	Lambda L(5, 61);
 	BitStr* a = new BitStr("1110");
 	BitStr* b = L.GetCodeByD(8);
 	EXPECT_EQ(*b == *a, true);
-	EXPECT_TRUE(true);
+	EXPECT_TRUE(true);a
 }
 TEST(Search, D_29) {
 	Lambda L(5, 61);

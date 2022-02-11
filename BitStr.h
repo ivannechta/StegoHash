@@ -1,6 +1,7 @@
 #pragma once
 #include <string.h>
 #include <stdio.h>
+#include "Number.h"
 
 typedef unsigned int uint;
 class BitStr 
@@ -22,7 +23,10 @@ public:
 	bool	operator == (BitStr& b);	
 	bool	operator != (BitStr& b);	
 	BitStr& operator %  (BitStr& b);
+	Number	AsNumber();
+	/* [[deprecated("Memory licage in operator(char*)")]]
 			operator char*  ();	
+	*/
 	uint  GetSize();
 	char* GetFormatedString(uint m);
 	void  Show();
